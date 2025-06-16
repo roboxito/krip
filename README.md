@@ -3,14 +3,14 @@ Encriptar, desencriptar y visualizar cadenas o archivos
 
 Utileria para encriptar, desencriptar y visualizar cadenas o archivos de texto de forma visual y sencilla, multiplataforma.
 
-Ejecución en Linux: (ubuntu 24.x)
-$ sudo apt install python3-tk
-$ sudo apt install venv
-$ python3 -m venv krip
-$ cd krip
-$ source bin/activate
-$ pip install cryptography
-$ python krip.py
+## Ejecución en Linux: (ubuntu 24.x)
+* sudo apt install python3-tk
+* sudo apt install venv
+* python3 -m venv krip
+* cd krip
+* source bin/activate
+* pip install cryptography
+* python krip.py
 
 Compatible con python en windows
 
