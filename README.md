@@ -21,3 +21,5 @@ Puede cambiar la Llave de encriptamiento generando una nueva y colocandokla en e
 #key=Fernet.generate_key()
 #print(key)
 key=b'B69FxcWQKd5CCsaWTtxB4vkCiw3nZn09nSU3stgPqsg='
+
+Copyleft (C) 2022 Jorge Lopez
