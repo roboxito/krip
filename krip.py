@@ -186,7 +186,8 @@ if(len(sys.argv)>=2):
       print("     u <archivo.enc> - Desencripta el archivo .enc y le remueve la entension .enc")
       print("     l <archivo.enc> - Desencripta el archivo .enc, y lo despliega en la salida estandar de consola")
       print("Uso con docker: $ mkdir app ")
-      print("                $ docker run -it -v ./app:/app debian:12-slim bash")
+      print("                $ docker run -it -v ./app:/app krip-cli bash")
+      print("                krip@eq:/app$ krip --help")
       exit(0)
 
 app=Application()
