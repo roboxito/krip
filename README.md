@@ -26,27 +26,37 @@ Compatible con python en windows
 Se agregaron parametros para su ejecución desde la linea de comandos:
 
 $ krip --help
+
 Copyleft (C) 2022 Jorge Lopez roboxito@gmail.com 
+
 python3 /home/krip/krip.py [comando] 
+
   comandos: 
+  
      e "<cadena>" - Encripta la cadena y la convierte a base64 
      d "<cadena>" - Decodifica la cadena de base64, y la desencripta 
      a <archivo> - Encripta el archivo y le agregar la extension .enc 
      u <archivo.enc> - Desencripta el archivo .enc y le remueve la entension .enc 
      l <archivo.enc> - Desencripta el archivo .enc, y lo despliega en la salida estandar de consola 
+     
 Uso con docker: $ mkdir app  
+
                 $ docker run -it -v ./app:/app krip-cli bash 
+                
                 krip@eq:/app$ krip --help 
 
 Ejemplos:
+
 krip@7d270401e81b:/app$ krip e "hola mundo" 
 
 Encriptado: 
+
 gAAAAABodztaCLOjH23TvQXC5CqNtKtxkRK66sHaHpJWXl4uQ4oiT9Yhn7aN1-byj4WRb53mTdC7oT9AAgOOtwyOF2LPwGEuww==  
 
 krip@7d270401e81b:/app$ krip d "gAAAAABodztaCLOjH23TvQXC5CqNtKtxkRK66sHaHpJWXl4uQ4oiT9Yhn7aN1-byj4WRb53mTdC7oT9AAgOOtwyOF2LPwGEuww== " 
 
 Desencriptado: 
+
 hola mundo  
 
 
