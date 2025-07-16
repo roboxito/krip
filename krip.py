@@ -3,12 +3,14 @@ from tkinter import *
 from tkinter import filedialog
 import time
 from tkinter import messagebox
-import os, glob
+import os
+#, glob
 from cryptography.fernet import Fernet
-import stat
+#import stat
 from tkinter import simpledialog
+import sys
 
-#Utileria para encriptar, desencriptar y visualizar cadenas o archivos de texto de forma visual y sencilla, multiplatadorma.
+#Utileria para encriptar, desencriptar y visualizar cadenas o archivos de texto de forma visual y sencilla, multiplataforma.
 # En ubuntu 24.x
 #$ sudo apt install python3-tk
 #$ sudo apt install venv
@@ -174,6 +176,18 @@ class Application(tk.Frame):
 Copyleft (C) 2022 Jorge Lopez
 roboxito@gmail.com""")
 
+if(len(sys.argv)>=2):
+   if (sys.argv[1]=="--help"):
+      print("python3 /home/krip/krip.py [comando]")
+      print("  comandos:")
+      print("     e \"<cadena>\" - Encripta la cadena y la convierte a base64")
+      print("     d \"<cadena>\" - Decodifica la cadena de base64, y la desencripta")
+      print("     a <archivo> - Encripta el archivo y le agregar la extension .enc")
+      print("     u <archivo.enc> - Desencripta el archivo .enc y le remueve la entension .enc")
+      print("     l <archivo.enc> - Desencripta el archivo .enc, y lo despliega en la salida estandar de consola")
+      print("Uso con docker: $ mkdir app ")
+      print("                $ docker run -it -v ./app:/app debian:12-slim bash")
+      exit(0)
 
 app=Application()
 app.master.title('Encriptador de archivos y cadenas (Krip)')
