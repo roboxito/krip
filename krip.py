@@ -88,20 +88,9 @@ class Application(tk.Frame):
       desencriptado=fernet.decrypt (data)
       fileObj.close()      
       
-      #nvoarch=os.path.splitext(filename)[0]
-      #fileObj=open(nvoarch,"wb")
-      #fileObj.write(desencriptado)
-      #fileObj.close()
-
-      self.aTxt.insert(tk.END,desencriptado)      
+      self.aTxt.insert(tk.END,desencriptado.decode("utf-8"))      
       self.aTxt.update_idletasks()
       self.aTxt.update()
-
-      #os.chmod(nvoarch,stat.S_IREAD)
-      #os.startfile (nvoarch)
-      #time.sleep(1)
-      #os.chmod(nvoarch,stat.S_IWRITE)
-      #os.remove(nvoarch)
 
    def desencrip(self):
       self.limpia()
@@ -178,6 +167,7 @@ roboxito@gmail.com""")
 
 if(len(sys.argv)>=2):
    if (sys.argv[1]=="--help"):
+      print("Copyleft (C) 2022 Jorge Lopez roboxito@gmail.com")
       print("python3 /home/krip/krip.py [comando]")
       print("  comandos:")
       print("     e \"<cadena>\" - Encripta la cadena y la convierte a base64")
@@ -188,6 +178,75 @@ if(len(sys.argv)>=2):
       print("Uso con docker: $ mkdir app ")
       print("                $ docker run -it -v ./app:/app krip-cli bash")
       print("                krip@eq:/app$ krip --help")
+      exit(0)
+   if (sys.argv[1]=="e"):
+      data=sys.argv[2]
+      encriptado=fernet.encrypt(data.encode())
+      payload="\nEncriptado:\n"+encriptado.decode()+" \n"
+      print(payload)
+      exit(0)
+   if (sys.argv[1]=="d"):
+      data=sys.argv[2]
+      desencriptado=fernet.decrypt(data.encode())
+      payload="\nDesencriptado:\n"+desencriptado.decode()+" \n"
+      print(payload)
+      exit(0)
+   if (sys.argv[1]=="a"):
+      filename=sys.argv[2]
+      if(filename==""): 
+         print("Escriba un nombre de archivo")
+         exit(1)
+      payload="Archivo seleccionado "+filename+" \n"
+      print(payload)
+      fileObj=open(filename,"rb")
+      try:
+         data=fileObj.read()
+         encriptado=fernet.encrypt(data)
+         fileObj.close()
+         nvoarch=filename+".enc"
+         fileObj=open(nvoarch,"wb")
+         fileObj.write(encriptado)
+         fileObj.close()
+         payload="Archivo encriptado "+nvoarch+" \n"
+         print(payload)
+         os.remove(filename)
+      except UnicodeDecodeError as e:
+         fileObj.close()
+         payload="Caracter invalido en posicion \n"+str(e)      
+         print(payload)
+      exit(0)
+   if (sys.argv[1]=="u"):
+      filename=sys.argv[2]
+      if(filename==""): 
+         print("Escriba un nombre de archivo")
+         exit(1)
+      payload="Archivo seleccionado "+filename+" \n"
+      print(payload)
+      fileObj=open(filename,"rb")
+      data=fileObj.read()
+      desencriptado=fernet.decrypt (data)
+      fileObj.close()
+      nvoarch=os.path.splitext(filename)[0]
+      fileObj=open(nvoarch,"wb")
+      fileObj.write(desencriptado)
+      fileObj.close()
+      payload="Archivo desencriptado "+nvoarch+" \n"
+      print(payload)
+      os.remove(filename)
+      exit(0)
+
+   if (sys.argv[1]=="l"):
+      filename=sys.argv[2]
+      if(filename ==""): 
+         print("Escriba un nombre de archivo")
+         exit(1)
+      payload="Archivo seleccionado "+filename+" \n"
+      print(payload)
+      fileObj=open(filename,"rb")
+      data=fileObj.read()
+      desencriptado=fernet.decrypt (data)
+      fileObj.close()      
+      print(desencriptado.decode("utf-8"))      
       exit(0)
 
 app=Application()
